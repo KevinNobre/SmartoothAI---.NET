@@ -12,17 +12,17 @@
 
         public string TipoPagamento { get; set; }
 
-        public int UsuarioPacientePacienteId { get; set; }
+        public int UsuarioPacienteId { get; set; }
 
         public Plano(int planoId, string tipoPlano, string descricao,
-                     string marcaPlano, string tipoPagamento, int usuarioPacientePacienteId)
+                     string marcaPlano, string tipoPagamento, int usuarioPacienteId)
         {
             PlanoId = planoId;
             TipoPlano = tipoPlano;
             Descricao = descricao;
             MarcaPlano = marcaPlano;
             TipoPagamento = tipoPagamento;
-            UsuarioPacientePacienteId = usuarioPacientePacienteId;
+            UsuarioPacienteId = usuarioPacienteId;
         }
     }
 }

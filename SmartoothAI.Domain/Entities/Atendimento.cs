@@ -20,8 +20,6 @@
 
        public int RecomendacaoTratId { get; set; }
 
-       public int ProfissionalId1 { get; set; }
-
         public Atendimento(int atendimentoId, string descricao, DateTime? data, TimeSpan? hora,
                            char? inclusoPlano, decimal? custo, int profissionalId,
                            int usuarioPacienteId, int recomendacaoTratId, int profissionalId1)
@@ -35,7 +33,6 @@
             ProfissionalId = profissionalId;
             UsuarioPacienteId = usuarioPacienteId;
             RecomendacaoTratId = recomendacaoTratId;
-            ProfissionalId1 = profissionalId1;
         }
     }
 }

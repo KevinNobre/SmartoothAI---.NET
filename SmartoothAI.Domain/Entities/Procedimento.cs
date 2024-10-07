@@ -14,13 +14,10 @@
 
         public int SistemaPontosId { get; set; }
 
-        public int SistPontosPlanoId { get; set; }
-
         public int UsPacienteId { get; set; }
 
         public Procedimento(int procedimentoId, string nomeProcedimento, string descricao,
-                            char? inclusaoPlano, int prontuarioId, int sistemaPontosId, 
-                            int sistPontosPlanoId, int usPacienteId)
+                            char? inclusaoPlano, int prontuarioId, int sistemaPontosId, int usPacienteId)
         {
             ProcedimentoId = procedimentoId;
             NomeProcedimento = nomeProcedimento;
@@ -28,7 +25,6 @@
             InclusaoPlano = inclusaoPlano;
             ProntuarioId = prontuarioId;
             SistemaPontosId = sistemaPontosId;
-            SistPontosPlanoId = sistPontosPlanoId;
             UsPacienteId = usPacienteId;
         }
     }

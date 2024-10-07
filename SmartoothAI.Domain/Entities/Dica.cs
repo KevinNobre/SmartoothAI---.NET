@@ -6,16 +6,16 @@
 
         public string Descricao { get; set; }
 
-        public int ProntuarioProntuarioId { get; set; }
+        public int ProntuarioId { get; set; }
 
-        public int UsuarioPacientePacienteId { get; set; }
+        public int UsuarioPacienteId { get; set; }
 
-        public Dica(int dicaId, string descricao, int prontuarioProntuarioId, int usuarioPacientePacienteId)
+        public Dica(int dicaId, string descricao, int prontuarioProntuarioId, int usuarioPacienteId)
         {
             DicaId = dicaId;
             Descricao = descricao;
-            ProntuarioProntuarioId = prontuarioProntuarioId;
-            UsuarioPacientePacienteId = usuarioPacientePacienteId;
+            ProntuarioId = prontuarioProntuarioId;
+            UsuarioPacienteId = usuarioPacienteId;
         }
     }
 }
