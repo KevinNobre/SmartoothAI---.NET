@@ -1,5 +1,6 @@
 ﻿using SmartoothAI.Domain.Entities;
 
+
 namespace SmartoothAI.Domain.Repositories
 {
     public interface IUsuarioPacienteRepository

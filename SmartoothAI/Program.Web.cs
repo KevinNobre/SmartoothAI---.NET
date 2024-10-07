@@ -1,27 +1,25 @@
-using Microsoft.EntityFrameworkCore;
-using SmartoothAI.Infrastructure.Data;
-using SmartoothAI.Infrastructure.Repositories;
-using SmartoothAI.Domain.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
-var builder = WebApplication.CreateBuilder(args);
+public static class WebConfiguration
+{
+    public static void ConfigureWebApp(WebApplicationBuilder builder)
+    {
+        // Adicionando serviços relacionados à Web
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer(); // Para expor as APIs, se necessário
+    }
 
-builder.Services.AddDbContext<SmartoothDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    public static void UseWebApp(WebApplication app)
+    {
+        // Configuração do pipeline para requisições HTTP
+        app.UseHttpsRedirection();
 
-builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
-builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
-builder.Services.AddScoped<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
+        app.UseRouting();
 
+        app.UseAuthorization();
 
-
-builder.Services.AddControllers();
-
-var app = builder.Build();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+        // Mapeando as rotas dos controladores
+        app.MapControllers();
+    }
+}
