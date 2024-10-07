@@ -2,6 +2,7 @@
 using SmartoothAI.Domain.Repositories;
 using SmartoothAI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using SmartoothAI.Infrastructure.Exceptions;
 
 
 namespace SmartoothAI.Infrastructure.Repositories
