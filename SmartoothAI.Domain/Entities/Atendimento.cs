@@ -1,6 +1,7 @@
-﻿namespace SmartoothAI.Domain.Entities
+﻿
+namespace SmartoothAI.Domain.Entities
 {
-    internal class Atendimento
+    public class Atendimento
     {
        public int AtendimentoId { get; set; }
 
