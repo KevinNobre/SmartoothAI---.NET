@@ -21,7 +21,7 @@ Além disso, o Smartooth AI conta com um indicador de Dicas que, utilizando mach
 orientações de saúde bucal personalizadas com base no histórico de consultas e prontuários dos pacientes. O
 sistema também inclui um programa de recompensas, onde os usuários acumulam pontos ao manter suas
 consultas regulares e praticar hábitos de saúde bucal, registrados em seu formulário. Esses pontos podem ser
-trocados por descontos em tratamentos bancários, proporcionando uma vantagem exclusiva aos pacientes.
+trocados por descontos em tratamentos dentários, proporcionando uma vantagem exclusiva aos pacientes.
 Outro diferencial do nosso sistema são as recomendações personalizadas em tempo real, que auxiliam o
 usuário com sugestões de cuidados e procedimentos específicos de acordo com o seu perfil e histórico
 clínico.
