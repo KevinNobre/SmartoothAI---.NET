@@ -59,6 +59,6 @@ O projeto abrange o desenvolvimento de um sistema que:
 - ASP.NET Core
 
 ## Como Rodar o Projeto
-1. **Clone o repositório**: 
+--1. **Clone o repositório**: 
    ```bash
    git clone [https://github.com/KevinNobre/SmartoothAI---.NET]
