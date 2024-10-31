@@ -15,6 +15,8 @@
         public int SistemaPontosId { get; set; }
 
         public int UsPacienteId { get; set; }
+        public Procedimento()
+        { }
 
         public Procedimento(int procedimentoId, string nomeProcedimento, string descricao,
                             char? inclusaoPlano, int prontuarioId, int sistemaPontosId, int usPacienteId)

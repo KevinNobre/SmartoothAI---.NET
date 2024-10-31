@@ -10,6 +10,9 @@
 
         public int UsuarioPacienteId { get; set; }
 
+        public Dica()
+        { }
+
         public Dica(int dicaId, string descricao, int prontuarioProntuarioId, int usuarioPacienteId)
         {
             DicaId = dicaId;

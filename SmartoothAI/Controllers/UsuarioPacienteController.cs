@@ -42,17 +42,14 @@ namespace SmartoothAI.Controllers
                 return BadRequest("Usuário Paciente não pode ser nulo.");
             }
 
-            // Mapeamento manual do DTO para a entidade
             var usuarioPaciente = new UsuarioPaciente
             {
                 Nome = usuarioPacienteDTO.Nome,
                 Email = usuarioPacienteDTO.Email
-                // Não defina o PacienteId aqui
             };
 
             await _usuarioPacienteRepository.AddAsync(usuarioPaciente);
 
-            // Aqui, o PacienteId já deve estar atribuído pelo EF
             return CreatedAtAction(nameof(GetById), new { id = usuarioPaciente.PacienteId }, usuarioPaciente);
         }
 

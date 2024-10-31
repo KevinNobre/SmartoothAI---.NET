@@ -12,6 +12,8 @@
 
         public string Contato { get; set; }
 
+        public Profissional()
+        { }
 
         public Profissional(int profissionalId, string nome, string especialidade, string experiencia, string contato)
         {

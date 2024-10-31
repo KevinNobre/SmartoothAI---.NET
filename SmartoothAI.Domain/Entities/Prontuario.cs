@@ -10,6 +10,9 @@
 
         public DateTime? DataRegistro { get; set; }
 
+        public Prontuario()
+        { }
+
         public Prontuario(int prontuarioId, string prescricao, string observacoes, DateTime? dataRegistro)
         {
             ProntuarioId = prontuarioId;

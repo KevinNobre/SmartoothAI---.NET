@@ -10,6 +10,9 @@
 
         public int PlanoId { get; set; }
 
+        public SistemaPontos()
+        { }
+
         public SistemaPontos(int pontosId, decimal? totalPontos, string tipoPontos, int planoId)
         {
             PontosId = pontosId;

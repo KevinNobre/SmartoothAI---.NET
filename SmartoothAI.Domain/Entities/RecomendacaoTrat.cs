@@ -7,6 +7,8 @@
         public DateTime? DataRec { get; set; }
 
         public int PlanoId { get; set; }
+        public RecomendacaoTrat()
+        { }
 
         public RecomendacaoTrat(int recomendacaoId, DateTime? dataRec, int planoId) 
         {

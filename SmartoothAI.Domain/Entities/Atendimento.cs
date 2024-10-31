@@ -21,6 +21,9 @@ namespace SmartoothAI.Domain.Entities
 
        public int RecomendacaoTratId { get; set; }
 
+        public Atendimento()
+        { }
+
         public Atendimento(int atendimentoId, string descricao, DateTime? data, TimeSpan? hora,
                            char? inclusoPlano, decimal? custo, int profissionalId,
                            int usuarioPacienteId, int recomendacaoTratId, int profissionalId1)

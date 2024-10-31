@@ -14,6 +14,9 @@
 
         public int UsuarioPacienteId { get; set; }
 
+        public Plano()
+        { }
+
         public Plano(int planoId, string tipoPlano, string descricao,
                      string marcaPlano, string tipoPagamento, int usuarioPacienteId)
         {
