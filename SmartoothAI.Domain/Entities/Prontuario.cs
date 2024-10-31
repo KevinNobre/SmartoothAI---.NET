@@ -8,7 +8,7 @@
 
         public string Observacoes { get; set; }
 
-        public DateTime? DataRegistro { get; set; }
+        public DateTime? DataRegistro { get; set; } 
 
         public Prontuario()
         { }
