@@ -21,7 +21,7 @@ namespace SmartoothAI.Infrastructure.Data
 
         public DbSet<RecomendacaoTrat> RecomendacoesTrat { get; set; }
 
-        public DbSet<SistemaPontos> SistemasPontos { get; set; }
+        public DbSet<SistemaPontos> SistemaPontos { get; set; }
 
         public DbSet<UsuarioPaciente> UsuariosPacientes { get; set; }
 

@@ -15,6 +15,7 @@
         public int SistemaPontosId { get; set; }
 
         public int UsPacienteId { get; set; }
+
         public Procedimento()
         { }
 
