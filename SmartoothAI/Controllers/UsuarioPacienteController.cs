@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmartoothAI.Domain.Entities;
-using SmartoothAI.Domain.Repositories;
+using SmartoothAI.Application.Services;
 using SmartoothAI.Application.DTOs;
+using SmartoothAI.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SmartoothAI.Controllers
 {
@@ -9,17 +11,18 @@ namespace SmartoothAI.Controllers
     [Route("api/[controller]")]
     public class UsuarioPacienteController : ControllerBase
     {
-        private readonly IUsuarioPacienteRepository _usuarioPacienteRepository;
+        private readonly UsuarioPacienteService _usuarioPacienteService;
 
-        public UsuarioPacienteController(IUsuarioPacienteRepository usuarioPacienteRepository)
+        public UsuarioPacienteController(UsuarioPacienteService usuarioPacienteService)
         {
-            _usuarioPacienteRepository = usuarioPacienteRepository;
+            _usuarioPacienteService = usuarioPacienteService;
         }
 
+        // Get by Id
         [HttpGet("{id}")]
         public async Task<ActionResult<UsuarioPaciente>> GetById(int id)
         {
-            var usuarioPaciente = await _usuarioPacienteRepository.GetByIdAsync(id);
+            var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
             if (usuarioPaciente == null)
             {
                 return NotFound();
@@ -27,13 +30,15 @@ namespace SmartoothAI.Controllers
             return Ok(usuarioPaciente);
         }
 
+        // Get all
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsuarioPaciente>>> GetAll()
         {
-            var usuariosPacientes = await _usuarioPacienteRepository.GetAllAsync();
+            var usuariosPacientes = await _usuarioPacienteService.GetAllAsync();
             return Ok(usuariosPacientes);
         }
 
+        // Create
         [HttpPost]
         public async Task<ActionResult<UsuarioPaciente>> Create([FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
@@ -42,45 +47,43 @@ namespace SmartoothAI.Controllers
                 return BadRequest("Usuário Paciente não pode ser nulo.");
             }
 
-            var usuarioPaciente = new UsuarioPaciente
-            {
-                Nome = usuarioPacienteDTO.Nome,
-                Email = usuarioPacienteDTO.Email
-            };
-
-            await _usuarioPacienteRepository.AddAsync(usuarioPaciente);
+            var usuarioPaciente = await _usuarioPacienteService.CreateAsync(usuarioPacienteDTO);
 
             return CreatedAtAction(nameof(GetById), new { id = usuarioPaciente.PacienteId }, usuarioPaciente);
         }
 
+        // Update
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, [FromBody] UsuarioPaciente usuarioPaciente)
+        public async Task<ActionResult> Update(int id, [FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
-            if (usuarioPaciente == null || usuarioPaciente.PacienteId != id)
+            if (usuarioPacienteDTO == null || usuarioPacienteDTO.PacienteId != id)
             {
                 return BadRequest("Dados inválidos.");
             }
 
-            var existingPaciente = await _usuarioPacienteRepository.GetByIdAsync(id);
+            var existingPaciente = await _usuarioPacienteService.GetByIdAsync(id);
             if (existingPaciente == null)
             {
                 return NotFound();
             }
 
-            await _usuarioPacienteRepository.UpdateAsync(usuarioPaciente);
+            await _usuarioPacienteService.UpdateAsync(id, usuarioPacienteDTO);
+
             return NoContent();
         }
 
+        // Delete
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var usuarioPaciente = await _usuarioPacienteRepository.GetByIdAsync(id);
+            var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
             if (usuarioPaciente == null)
             {
                 return NotFound();
             }
 
-            await _usuarioPacienteRepository.DeleteAsync(id);
+            await _usuarioPacienteService.DeleteAsync(id);
+
             return NoContent();
         }
     }

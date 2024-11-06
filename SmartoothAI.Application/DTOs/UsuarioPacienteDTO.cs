@@ -1,7 +1,9 @@
 ﻿namespace SmartoothAI.Application.DTOs
 {
     public class UsuarioPacienteDTO
-    {   
+    {
+        public int PacienteId { get; set; }
+
         public string Nome { get; set; }
 
         public string Sobrenome { get; set; }
