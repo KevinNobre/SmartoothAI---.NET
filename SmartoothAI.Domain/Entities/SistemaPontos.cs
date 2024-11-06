@@ -1,7 +1,11 @@
-﻿namespace SmartoothAI.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartoothAI.Domain.Entities
 {
     public class SistemaPontos
     {
+
+        [Key]
         public int PontosId { get; set; }
 
         public decimal? TotalPontos { get; set; }

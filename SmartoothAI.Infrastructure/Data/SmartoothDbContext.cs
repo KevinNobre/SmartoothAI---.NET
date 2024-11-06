@@ -27,6 +27,10 @@ namespace SmartoothAI.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RecomendacaoTrat>()
+                .HasNoKey();
+
+            base.OnModelCreating(modelBuilder); 
         }
     }
 }

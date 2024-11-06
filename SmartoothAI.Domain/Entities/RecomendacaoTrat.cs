@@ -1,7 +1,10 @@
-﻿namespace SmartoothAI.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartoothAI.Domain.Entities
 {
     public class RecomendacaoTrat
     {
+        [Key]
         public int RecomendacaoId { get; set; }
 
         public DateTime? DataRec { get; set; }

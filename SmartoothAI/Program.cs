@@ -6,8 +6,11 @@ using SmartoothAI.Domain.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração do banco de dados
+//builder.Services.AddDbContext<SmartoothDbContext>(options =>
+ //   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddDbContext<SmartoothDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
 
 builder.Services.AddScoped<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
 builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
@@ -39,3 +42,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
