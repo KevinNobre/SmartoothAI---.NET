@@ -24,6 +24,7 @@ namespace SmartoothAI.Domain.Entities
         [Column("data_registro")]
         [Display(Name = "Data de Registro:")]
         public DateTime? DataRegistro { get; set; }
+        public int Id { get; set; }
 
         public Prontuario()
         { }

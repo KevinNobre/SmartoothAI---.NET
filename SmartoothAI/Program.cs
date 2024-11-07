@@ -14,6 +14,7 @@ builder.Services.AddDbContext<SmartoothDbContext>(options =>
 builder.Services.AddScoped<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
 builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
 builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
+builder.Services.AddScoped<IProntuarioRepository, ProntuarioRepository>();
 
 // Registra os serviços de negócios
 builder.Services.AddScoped<UsuarioPacienteService>();
