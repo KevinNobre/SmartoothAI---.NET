@@ -23,8 +23,12 @@ namespace SmartoothAI.Controllers
             return View();
         }
 
-        // Ação GET para exibir o formulário de login
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Registro()
         {
             return View();
         }
@@ -56,5 +60,7 @@ namespace SmartoothAI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }
