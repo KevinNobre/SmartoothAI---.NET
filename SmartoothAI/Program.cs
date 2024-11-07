@@ -38,8 +38,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Rota padrão, para qualquer URL que não se encaixe nas rotas personalizadas
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");  // URL padrão, Home/Index é o padrão
 
 app.Run();
