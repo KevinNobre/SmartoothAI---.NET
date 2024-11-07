@@ -33,6 +33,18 @@ namespace SmartoothAI.Controllers
             return View();
         }
 
+        public IActionResult Atendimento()
+        {
+            var pacientes = new List<string> { "Sabrina Couto", "Kevin Nobre", "Juliana Moreira" };
+            return View(pacientes); 
+        }
+        public IActionResult Detalhes(string id)
+        {
+            var pacienteDetalhes = $"Detalhes do Paciente: {id}";
+            return View("Detalhes", pacienteDetalhes);
+        }
+
+
         // Ação POST para processar o login
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
@@ -44,7 +56,7 @@ namespace SmartoothAI.Controllers
                 {
                     // Redireciona para a página inicial após login bem-sucedido
                     TempData["Mensagem"] = "Login realizado com sucesso!";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Atendimento", "Home");
                 }
                 else
                 {

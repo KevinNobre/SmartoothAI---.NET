@@ -1,0 +1,41 @@
+﻿@model List<string> 
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Atendimento - Lista de Pacientes</h2>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Nome do Paciente</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var paciente in Model)
+            {
+                <tr>
+                    <td>@paciente</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Detalhes" class="btn btn-primary btn-sm">Visualizar Prontuário</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-3">Voltar</a>
+</div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
