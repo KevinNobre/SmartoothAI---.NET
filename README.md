@@ -54,11 +54,18 @@ O projeto abrange o desenvolvimento de um sistema que:
 ## Tecnologias Utilizadas
 - .NET 8.0
 - Entity Framework Core
-- SQL Server
+- Oracle SQL Developer Server
 - C#
 - ASP.NET Core
+
+##Configuração do Banco de Dados:
+Certifique-se de que o SQL Developer esteja instalado e configurado.
+Atualize a string de conexão no arquivo appsettings.json para o seu banco de dados.
+
 
 ## Como Rodar o Projeto
 --1. **Clone o repositório**: 
    ```bash
    git clone [https://github.com/KevinNobre/SmartoothAI---.NET]
+
+      
