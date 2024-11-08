@@ -1,6 +1,33 @@
-﻿namespace SmartoothAI.WebAPI.Views.Prontuario
-{
-    public class Index
-    {
-    }
-}
+﻿@model IEnumerable<SmartoothAI.Domain.Entities.Prontuario>
+
+<h2>Lista de Prontuários</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID do Prontuário</th>
+            <th>Prescrição</th>
+            <th>Observações</th>
+            <th>Data de Registro</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProntuarioId</td>
+                <td>@item.Prescricao</td>
+                <td>@item.Observacoes</td>
+                <td>@item.DataRegistro?.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProntuarioId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProntuarioId">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProntuarioId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Novo Prontuário</a>

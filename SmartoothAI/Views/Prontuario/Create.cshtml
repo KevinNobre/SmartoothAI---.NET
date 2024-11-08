@@ -1,6 +1,43 @@
-﻿namespace SmartoothAI.WebAPI.Views.Prontuario
-{
-    public class Create
-    {
+﻿@model SmartoothAI.Domain.Entities.Prontuario
+
+@{
+    ViewData["Title"] = "Criar Prontuário";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Prescricao">Prescrição:</label>
+        <input type="text" id="Prescricao" name="Prescricao" class="form-control" placeholder="Digite a prescrição" value="@Model.Prescricao" />
+        <span asp-validation-for="Prescricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Observacoes">Observações:</label>
+        <input type="text" id="Observacoes" name="Observacoes" class="form-control" placeholder="Digite as observações" value="@Model.Observacoes" />
+        <span asp-validation-for="Observacoes" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="DataRegistro">Data de Registro:</label>
+        <input type="date" id="DataRegistro" name="DataRegistro" class="form-control" value="@Model.DataRegistro?.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="DataRegistro" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

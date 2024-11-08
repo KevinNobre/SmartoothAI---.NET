@@ -1,6 +1,42 @@
-﻿namespace SmartoothAI.WebAPI.Views.Prontuario
-{
-    public class Delete
-    {
-    }
-}
+﻿@model SmartoothAI.Domain.Entities.Prontuario
+
+<h2>Excluir Prontuário</h2>
+
+<h4>Tem certeza de que deseja excluir este prontuário?</h4>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ProntuarioId)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ProntuarioId)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Prescricao)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Prescricao)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Observacoes)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Observacoes)
+    </dd>
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.DataRegistro)
+    </dt>
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.DataRegistro)
+    </dd>
+</dl>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="ProntuarioId" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
