@@ -58,7 +58,7 @@ O projeto abrange o desenvolvimento de um sistema que:
 - C#
 - ASP.NET Core
 
-##Configuração do Banco de Dados:
+## Configuração do Banco de Dados:
 Certifique-se de que o SQL Developer esteja instalado e configurado.
 Atualize a string de conexão no arquivo appsettings.json para o seu banco de dados.
 
