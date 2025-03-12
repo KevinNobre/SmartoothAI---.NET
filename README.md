@@ -31,6 +31,15 @@ oferecendo orientações e incentivos baseados em dados reais e comportamentos s
 “Smartooth” reflete bem a ideia por trás do projeto, combinando “smart” (inteligente) com “tooth” (dente),
 representando nossa proposta de unir tecnologia e odontologia em uma solução inovadora.
 
+### Arquitetura do Sistema
+O Smartooth AI foi desenvolvido utilizando uma arquitetura monolítica, onde toda a lógica da aplicação reside em um único código-base. Essa abordagem foi escolhida considerando os seguintes fatores:
+- Simplicidade no desenvolvimento e manutenção: Permite uma implementação mais ágil e centralizada, facilitando correções e melhorias contínuas.
+- Menor complexidade operacional: Não há necessidade de gerenciar múltiplos serviços independentes, reduzindo a sobrecarga de infraestrutura e comunicação entre microsserviços.
+- Facilidade na integração com o banco de dados Oracle: Garante um fluxo de dados eficiente sem a necessidade de camadas adicionais para comunicação.
+- Escalabilidade planejada: Apesar da abordagem monolítica inicial, o sistema foi estruturado de forma modular, permitindo futuras transições para uma arquitetura baseada em microsserviços, se necessário.
+
+A API do Smartooth AI foi projetada seguindo boas práticas de desenvolvimento, utilizando princípios SOLID e garantindo modularidade nas funcionalidades para facilitar futuras expansões.
+
 ### Escopo
 O projeto abrange o desenvolvimento de um sistema que:
 - Realiza o gerenciamento de usuários pacientes, incluindo registro e autenticação.
@@ -54,11 +63,30 @@ O projeto abrange o desenvolvimento de um sistema que:
 ## Tecnologias Utilizadas
 - .NET 8.0
 - Entity Framework Core
-- SQL Server
+- Oracle SQL Developer Server
 - C#
 - ASP.NET Core
+- Swagger/OpenAPI para documentação da API
+
+## Configuração do Banco de Dados:
+Certifique-se de que o SQL Developer esteja instalado e configurado.
+Atualize a string de conexão no arquivo appsettings.json para o seu banco de dados.
 
 ## Como Rodar o Projeto
---1. **Clone o repositório**: 
-   ```bash
+
+### Pré-requisitos
+Antes de iniciar, certifique-se de ter os seguintes requisitos instalados:
+
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Developer Server (Oracle)](https://www.oracle.com/database/sqldeveloper/)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) (ou outro IDE compatível)
+- [Git](https://git-scm.com/)
+
+### Passo a passo para execução
+
+1. **Clone o repositório**
+   ```sh
    git clone [https://github.com/KevinNobre/SmartoothAI---.NET]
+
+
+      
