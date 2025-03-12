@@ -20,18 +20,21 @@ namespace SmartoothAI.Controllers
 
         // Get by Id
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(UsuarioPaciente), 200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<UsuarioPaciente>> GetById(int id)
         {
             var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
             if (usuarioPaciente == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Usuário Paciente não encontrado." });
             }
             return Ok(usuarioPaciente);
         }
 
         // Get all
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<UsuarioPaciente>), 200)]
         public async Task<ActionResult<IEnumerable<UsuarioPaciente>>> GetAll()
         {
             var usuariosPacientes = await _usuarioPacienteService.GetAllAsync();
@@ -40,11 +43,13 @@ namespace SmartoothAI.Controllers
 
         // Create
         [HttpPost]
+        [ProducesResponseType(typeof(UsuarioPaciente), 201)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<UsuarioPaciente>> Create([FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
             if (usuarioPacienteDTO == null)
             {
-                return BadRequest("Usuário Paciente não pode ser nulo.");
+                return BadRequest(new { message = "Usuário Paciente não pode ser nulo." });
             }
 
             var usuarioPaciente = await _usuarioPacienteService.CreateAsync(usuarioPacienteDTO);
@@ -54,35 +59,42 @@ namespace SmartoothAI.Controllers
 
         // Update
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, [FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Update(int id, [FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
-            if (usuarioPacienteDTO == null || usuarioPacienteDTO.PacienteId != id)
+            if (usuarioPacienteDTO == null)
             {
-                return BadRequest("Dados inválidos.");
+                return BadRequest(new { message = "Os dados do usuário paciente são inválidos." });
+            }
+
+            if (usuarioPacienteDTO.PacienteId != id)
+            {
+                return BadRequest(new { message = "O ID do corpo da requisição não corresponde ao ID da URL." });
             }
 
             var existingPaciente = await _usuarioPacienteService.GetByIdAsync(id);
             if (existingPaciente == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Usuário Paciente não encontrado." });
             }
 
             await _usuarioPacienteService.UpdateAsync(id, usuarioPacienteDTO);
-
             return NoContent();
         }
 
         // Delete
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Delete(int id)
         {
-            var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
-            if (usuarioPaciente == null)
+            var success = await _usuarioPacienteService.DeleteAsync(id);
+            if (!success)
             {
-                return NotFound();
+                return NotFound(new { message = "Usuário Paciente não encontrado." });
             }
-
-            await _usuarioPacienteService.DeleteAsync(id);
 
             return NoContent();
         }

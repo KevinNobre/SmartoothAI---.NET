@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmartoothAI.Domain\SmartoothAI.Domain.csproj" />
+    <ProjectReference Include="..\SmartoothAI.Infrastructure\SmartoothAI.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -50,42 +50,49 @@ namespace SmartoothAI.Application.Services
             };
 
             await _usuarioPacienteRepository.AddAsync(usuarioPaciente);
-
             return usuarioPaciente;
         }
 
         // Método para atualizar um usuário existente
         public async Task<UsuarioPaciente> UpdateAsync(int id, UsuarioPacienteDTO usuarioPacienteDTO)
         {
-            var usuarioPaciente = new UsuarioPaciente
+            var usuarioPaciente = await _usuarioPacienteRepository.GetByIdAsync(id);
+            if (usuarioPaciente == null)
             {
-                PacienteId = id,
-                Nome = usuarioPacienteDTO.Nome,
-                Sobrenome = usuarioPacienteDTO.Sobrenome,
-                Email = usuarioPacienteDTO.Email,
-                DataNasc = usuarioPacienteDTO.DataNasc,
-                Genero = usuarioPacienteDTO.Genero,
-                Cep = usuarioPacienteDTO.Cep,
-                Logradouro = usuarioPacienteDTO.Logradouro,
-                Numero = usuarioPacienteDTO.Numero,
-                Complemento = usuarioPacienteDTO.Complemento,
-                Bairro = usuarioPacienteDTO.Bairro,
-                Cidade = usuarioPacienteDTO.Cidade,
-                Uf = usuarioPacienteDTO.Uf,
-                Contato = usuarioPacienteDTO.Contato,
-                Pontos = usuarioPacienteDTO.Pontos,
-                Descontos = usuarioPacienteDTO.Descontos
-            };
+                return null;
+            }
+
+            usuarioPaciente.Nome = usuarioPacienteDTO.Nome;
+            usuarioPaciente.Sobrenome = usuarioPacienteDTO.Sobrenome;
+            usuarioPaciente.Email = usuarioPacienteDTO.Email;
+            usuarioPaciente.DataNasc = usuarioPacienteDTO.DataNasc;
+            usuarioPaciente.Genero = usuarioPacienteDTO.Genero;
+            usuarioPaciente.Cep = usuarioPacienteDTO.Cep;
+            usuarioPaciente.Logradouro = usuarioPacienteDTO.Logradouro;
+            usuarioPaciente.Numero = usuarioPacienteDTO.Numero;
+            usuarioPaciente.Complemento = usuarioPacienteDTO.Complemento;
+            usuarioPaciente.Bairro = usuarioPacienteDTO.Bairro;
+            usuarioPaciente.Cidade = usuarioPacienteDTO.Cidade;
+            usuarioPaciente.Uf = usuarioPacienteDTO.Uf;
+            usuarioPaciente.Contato = usuarioPacienteDTO.Contato;
+            usuarioPaciente.Pontos = usuarioPacienteDTO.Pontos;
+            usuarioPaciente.Descontos = usuarioPacienteDTO.Descontos;
 
             await _usuarioPacienteRepository.UpdateAsync(usuarioPaciente);
-
             return usuarioPaciente;
         }
 
         // Método para excluir um usuário
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            await _usuarioPacienteRepository.DeleteAsync(id);
+            var usuarioPaciente = await _usuarioPacienteRepository.GetByIdAsync(id);
+            if (usuarioPaciente == null)
+            {
+                return false;
+            }
+
+            await _usuarioPacienteRepository.DeleteAsync(usuarioPaciente);
+            return true;
         }
     }
 }
