@@ -4,6 +4,7 @@ using SmartoothAI.Infrastructure.Repositories;
 using SmartoothAI.Domain.Repositories;
 using SmartoothAI.Application.Services;
 using SmartoothAI.Infrastructure.Configuration;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,23 @@ builder.Services.AddDbContext<SmartoothDbContext>(options =>
 builder.Services.AddSingleton(provider =>
     AppConfigurationManager.GetInstance(provider.GetRequiredService<IConfiguration>()));
 
+// Configuração do Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Smartooth AI API",
+        Version = "v1",
+        Description = "API para gerenciamento odontológico com inteligência artificial.",
+        Contact = new OpenApiContact
+        {
+            Name = "Suporte Smartooth",
+            Email = "suporte@smartoothai.com",
+            Url = new Uri("https://smartoothai.com")
+        }
+    });
+});
 
 // Registra os repositórios
 builder.Services.AddScoped<IUsuarioPacienteRepository, UsuarioPacienteRepository>();
@@ -32,7 +50,7 @@ builder.Services.AddHttpsRedirection(options => options.HttpsPort = 5001);
 
 var app = builder.Build();
 
-//Testando Singleton 
+// Testando Singleton
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -60,12 +78,20 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 app.UseAuthorization();
 
-// Rota padrão, para qualquer URL que não se encaixe nas rotas personalizadas
+// Middleware do Swagger
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Smartooth AI API v1");
+    options.RoutePrefix = "swagger";
+});
+
+// Rota padrão
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");  // URL padrão, Home/Index é o padrão
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Inicia a aplicação
 app.Run();
