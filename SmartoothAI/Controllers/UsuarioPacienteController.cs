@@ -19,9 +19,16 @@ namespace SmartoothAI.Controllers
         }
 
         // Get by Id
+        /// <summary>
+        /// Obter um Paciente
+        /// </summary>
+        /// <param name="id">Identificador do Usuario Paciente</param>
+        /// <returns>Dados do Usuario Paciente</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="404">Não encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(UsuarioPaciente), 200)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UsuarioPaciente>> GetById(int id)
         {
             var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
@@ -33,8 +40,13 @@ namespace SmartoothAI.Controllers
         }
 
         // Get all
+        /// <summary>
+        /// Obter todos os Usuarios
+        /// </summary>
+        /// <returns>Todos os Usuários Pacientes</returns>
+        /// <response code="200">Sucesso</response>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<UsuarioPaciente>), 200)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UsuarioPaciente>>> GetAll()
         {
             var usuariosPacientes = await _usuarioPacienteService.GetAllAsync();
@@ -42,9 +54,19 @@ namespace SmartoothAI.Controllers
         }
 
         // Create
+        /// <summary>
+        /// Cadastrar um Usuario Paciente
+        /// </summary>
+        /// <remarks>
+        /// objeto Json
+        /// </remarks>
+        /// <param name="usuarioPacienteDTO">Dados do Usuario</param>
+        /// <returns>Paciente recém criado</returns>
+        /// <response code="201">Sucesso</response>
+        /// <response code="404">Não encontrado</response>
         [HttpPost]
         [ProducesResponseType(typeof(UsuarioPaciente), 201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UsuarioPaciente>> Create([FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
             if (usuarioPacienteDTO == null)
@@ -58,10 +80,17 @@ namespace SmartoothAI.Controllers
         }
 
         // Update
+        /// <summary>
+        /// Atualizar um Usuário
+        /// </summary>
+        /// <param name="id">Identificador do Usuario</param>
+        /// <param name="usuarioPacienteDTO">Dados do Usuário</param>
+        /// <returns>Não retorna informações</returns>
+        /// <response code="404">Não encontrado</response>
+        /// <response code="204">Sucesso</response>
         [HttpPut("{id}")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Update(int id, [FromBody] UsuarioPacienteDTO usuarioPacienteDTO)
         {
             if (usuarioPacienteDTO == null)
@@ -85,9 +114,16 @@ namespace SmartoothAI.Controllers
         }
 
         // Delete
+        /// <summary>
+        /// Deletar um Usuario
+        /// </summary>
+        /// <param name="id">Identificador de Usuario</param>
+        /// <returns>Não retorna informações</returns>
+        /// <response code="404">Não encontrado</response>
+        /// <response code="204">Sucesso</response>
         [HttpDelete("{id}")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
             var success = await _usuarioPacienteService.DeleteAsync(id);

@@ -22,16 +22,19 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Smartooth AI API",
+        Title = "SmartoothAI API",
         Version = "v1",
-        Description = "API para gerenciamento odontológico com inteligência artificial.",
+        Description = "O SmarTooth AI é um sistema inteligente voltado para otimizar serviços odontológicos.",
         Contact = new OpenApiContact
         {
-            Name = "Suporte Smartooth",
-            Email = "suporte@smartoothai.com",
-            Url = new Uri("https://smartoothai.com")
+            Name = "ByteBloom Tech",
+            Url = new Uri("https://github.com/KevinNobre/SmartoothAI---.NET.git")
         }
     });
+
+    var xmlFile = "SmartoothAI.API.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
 });
 
 // Registra os repositórios
@@ -39,6 +42,9 @@ builder.Services.AddScoped<IUsuarioPacienteRepository, UsuarioPacienteRepository
 builder.Services.AddScoped<IPlanoRepository, PlanoRepository>();
 builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
 builder.Services.AddScoped<IProntuarioRepository, ProntuarioRepository>();
+builder.Services.AddScoped<IDicaRepository, DicaRepository>();
+builder.Services.AddScoped<ISistemaPontosRepository, SistemaPontosRepository>();
+builder.Services.AddScoped<IProcedimentoRepository, ProcedimentoRepository>();
 
 // Registra os serviços de negócios
 builder.Services.AddScoped<UsuarioPacienteService>();
