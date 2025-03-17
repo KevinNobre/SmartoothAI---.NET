@@ -35,7 +35,7 @@ namespace SmartoothAI.Controllers
 
         public IActionResult Atendimento()
         {
-            var pacientes = new List<string> { "Sabrina Couto", "Kevin Nobre", "Juliana Moreira" };
+            var pacientes = new List<string> { "Paciente Tranquilo", "Sabrina Couto", "Kevin Nobre", "Juliana Moreira", };
             return View(pacientes); 
         }
         public IActionResult Detalhes(string id)

@@ -1,0 +1,113 @@
+﻿@model SmartoothAI.Application.DTOs.UsuarioPacienteDTO
+
+@{
+    ViewData["Title"] = "Cadastrar Paciente";
+}
+
+<h2 class="mb-4">Cadastrar Paciente</h2>
+
+<div class="card shadow p-4">
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Nome" class="form-label">Nome</label>
+                <input asp-for="Nome" class="form-control" required />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Sobrenome" class="form-label">Sobrenome</label>
+                <input asp-for="Sobrenome" class="form-control" required />
+                <span asp-validation-for="Sobrenome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Email" class="form-label">E-mail</label>
+                <input asp-for="Email" type="email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="DataNasc" class="form-label">Data de Nascimento</label>
+                <input asp-for="DataNasc" type="date" class="form-control" required />
+                <span asp-validation-for="DataNasc" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Genero" class="form-label">Gênero</label>
+                <select asp-for="Genero" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Contato" class="form-label">Contato</label>
+                <input asp-for="Contato" type="tel" class="form-control" required />
+                <span asp-validation-for="Contato" class="text-danger"></span>
+            </div>
+        </div>
+
+        <h5 class="mt-3">Endereço</h5>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="Cep" class="form-label">CEP</label>
+                <input asp-for="Cep" class="form-control" required />
+            </div>
+            <div class="col-md-8 mb-3">
+                <label asp-for="Logradouro" class="form-label">Logradouro</label>
+                <input asp-for="Logradouro" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <label asp-for="Numero" class="form-label">Número</label>
+                <input asp-for="Numero" class="form-control" required />
+            </div>
+            <div class="col-md-5 mb-3">
+                <label asp-for="Complemento" class="form-label">Complemento</label>
+                <input asp-for="Complemento" class="form-control" />
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Bairro" class="form-label">Bairro</label>
+                <input asp-for="Bairro" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Cidade" class="form-label">Cidade</label>
+                <input asp-for="Cidade" class="form-control" required />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Uf" class="form-label">UF</label>
+                <input asp-for="Uf" class="form-control" required maxlength="2" />
+            </div>
+        </div>
+
+        <h5 class="mt-3">Benefícios</h5>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Pontos" class="form-label">Pontos</label>
+                <input asp-for="Pontos" type="number" class="form-control" step="0.01" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Descontos" class="form-label">Descontos</label>
+                <input asp-for="Descontos" type="number" class="form-control" step="0.01" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
