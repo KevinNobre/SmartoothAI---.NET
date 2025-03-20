@@ -4,6 +4,7 @@ using SmartoothAI.Application.DTOs;
 using SmartoothAI.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SmartoothAI.Controllers
 {
@@ -12,32 +13,52 @@ namespace SmartoothAI.Controllers
     public class UsuarioPacienteController : ControllerBase
     {
         private readonly UsuarioPacienteService _usuarioPacienteService;
+        private readonly ILogger<UsuarioPacienteController> _logger;
 
-        public UsuarioPacienteController(UsuarioPacienteService usuarioPacienteService)
+        public UsuarioPacienteController(UsuarioPacienteService usuarioPacienteService, ILogger<UsuarioPacienteController> logger)
         {
             _usuarioPacienteService = usuarioPacienteService;
+            _logger = logger;
         }
 
         // Get by Id
-        /// <summary>
+        /// <summary>   
         /// Obter um Paciente
         /// </summary>
         /// <param name="id">Identificador do Usuario Paciente</param>
         /// <returns>Dados do Usuario Paciente</returns>
         /// <response code="200">Sucesso</response>
         /// <response code="404">Não encontrado</response>
+        /// <response code="500">Erro interno</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(UsuarioPaciente), 200)]
+        [ProducesResponseType(typeof(UsuarioPaciente), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<UsuarioPaciente>> GetById(int id)
         {
-            var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
-            if (usuarioPaciente == null)
+            try
             {
-                return NotFound(new { message = "Usuário Paciente não encontrado." });
+                var usuarioPaciente = await _usuarioPacienteService.GetByIdAsync(id);
+
+                if (usuarioPaciente == null)
+                {
+                    return NotFound(new { message = "Usuário Paciente não encontrado." });
+                }
+
+                return Ok(usuarioPaciente);
             }
-            return Ok(usuarioPaciente);
+            catch (OracleException ex) // Captura erro específico do Oracle
+            {
+                _logger.LogError(ex, "Erro ao acessar o banco de dados: {Message}", ex.Message);
+                return StatusCode(500, new { message = "Erro ao acessar o banco de dados. Verifique a conexão e a existência da tabela." });
+            }
+            catch (Exception ex) // Captura qualquer outro erro inesperado
+            {
+                _logger.LogError(ex, "Erro inesperado ao buscar usuário paciente: {Message}", ex.Message);
+                return StatusCode(500, new { message = "Erro interno no servidor. Tente novamente mais tarde." });
+            }
         }
+
 
         // Get all
         /// <summary>
@@ -126,11 +147,8 @@ namespace SmartoothAI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
-            var success = await _usuarioPacienteService.DeleteAsync(id);
-            if (!success)
-            {
-                return NotFound(new { message = "Usuário Paciente não encontrado." });
-            }
+            var paciente = await _usuarioPacienteService.GetByIdAsync(id);
+            if (paciente == null) return NotFound(new { message = "Usuário Paciente não encontrado." });
 
             return NoContent();
         }
