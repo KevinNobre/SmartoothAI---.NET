@@ -31,14 +31,23 @@ oferecendo orientações e incentivos baseados em dados reais e comportamentos s
 “Smartooth” reflete bem a ideia por trás do projeto, combinando “smart” (inteligente) com “tooth” (dente),
 representando nossa proposta de unir tecnologia e odontologia em uma solução inovadora.
 
-### Arquitetura do Sistema
-O Smartooth AI foi desenvolvido utilizando uma arquitetura monolítica, onde toda a lógica da aplicação reside em um único código-base. Essa abordagem foi escolhida considerando os seguintes fatores:
-- Simplicidade no desenvolvimento e manutenção: Permite uma implementação mais ágil e centralizada, facilitando correções e melhorias contínuas.
-- Menor complexidade operacional: Não há necessidade de gerenciar múltiplos serviços independentes, reduzindo a sobrecarga de infraestrutura e comunicação entre microsserviços.
-- Facilidade na integração com o banco de dados Oracle: Garante um fluxo de dados eficiente sem a necessidade de camadas adicionais para comunicação.
-- Escalabilidade planejada: Apesar da abordagem monolítica inicial, o sistema foi estruturado de forma modular, permitindo futuras transições para uma arquitetura baseada em microsserviços, se necessário.
+---
 
-A API do Smartooth AI foi projetada seguindo boas práticas de desenvolvimento, utilizando princípios SOLID e garantindo modularidade nas funcionalidades para facilitar futuras expansões.
+## 🏗️ Arquitetura do Sistema  
+
+### 🔹 **Escolha da Arquitetura: Monolítica vs Microservices**  
+O **Smartooth AI** foi desenvolvido utilizando uma **arquitetura monolítica**, onde toda a lógica reside em um único código-base.  
+
+🟢 **Motivos da escolha:**  
+- **Simplicidade no desenvolvimento e manutenção** ✅  
+- **Menor complexidade operacional** 🚀  
+- **Facilidade de integração com o banco de dados Oracle** 💾  
+- **Escalabilidade futura planejada**, permitindo migração para microsserviços se necessário 🔄  
+
+🔹 **Estrutura da API**  
+A API segue **boas práticas de desenvolvimento**, utilizando:  
+- **Princípios SOLID** para modularidade e manutenção eficiente.  
+- **Design Patterns** como **Repository Pattern** e **Service Layer** para separação de responsabilidades.  
 
 ### Escopo
 O projeto abrange o desenvolvimento de um sistema que:
@@ -60,6 +69,25 @@ O projeto abrange o desenvolvimento de um sistema que:
 - O tempo de resposta para operações de CRUD deve ser minimizado para garantir uma boa experiência do usuário.
 - O sistema deve ser desenvolvido seguindo boas práticas de programação e design de software, utilizando princípios de SOLID.
 
+- ---
+
+## 📚 Design Patterns Utilizados  
+
+### 🔹 Repository Pattern  
+Utilizado para abstrair a lógica de acesso ao banco de dados, permitindo um código mais desacoplado e testável.  
+
+### 🔹 Service Layer  
+Separa a lógica de negócios da camada de API, facilitando a manutenção e testes unitários.  
+
+### 🔹 Dependency Injection  
+Melhora a modularidade e facilita a inversão de dependência dentro do projeto.  
+
+---
+## Como Rodar o Projeto:
+
+Certifique-se de que o SQL Developer esteja instalado e configurado.
+Atualize a string de conexão no arquivo appsettings.json para o seu banco de dados.
+
 ## Tecnologias Utilizadas
 - .NET 8.0
 - Entity Framework Core
@@ -67,12 +95,6 @@ O projeto abrange o desenvolvimento de um sistema que:
 - C#
 - ASP.NET Core
 - Swagger/OpenAPI para documentação da API
-
-## Configuração do Banco de Dados:
-Certifique-se de que o SQL Developer esteja instalado e configurado.
-Atualize a string de conexão no arquivo appsettings.json para o seu banco de dados.
-
-## Como Rodar o Projeto
 
 ### Pré-requisitos
 Antes de iniciar, certifique-se de ter os seguintes requisitos instalados:
