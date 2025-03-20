@@ -104,6 +104,15 @@ Antes de iniciar, certifique-se de ter os seguintes requisitos instalados:
 - [Visual Studio 2022](https://visualstudio.microsoft.com/) (ou outro IDE compatível)
 - [Git](https://git-scm.com/)
 
+### Exemplo de Teste
+
+- Requisição de Login com utilização da API + Banco de Dados Oracle
+
+  ![Login](https://github.com/user-attachments/assets/6a5f669b-d6ab-4cd7-b532-b0c1db41b646)
+
+
+
+
 ### Passo a passo para execução
 
 1. **Clone o repositório**
