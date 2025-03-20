@@ -1,0 +1,9 @@
+@model SmartoothAI.Application.DTOs.UsuarioPacienteDTO
+
+<h2>Excluir Paciente</h2>
+<p>Tem certeza de que deseja excluir o paciente <strong>@Model.Nome</strong>?</p>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="PacienteId" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+</form>
+<a href="/UsuarioPaciente" class="btn btn-secondary">Cancelar</a>   
