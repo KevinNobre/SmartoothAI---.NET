@@ -83,6 +83,12 @@ Separa a lógica de negócios da camada de API, facilitando a manutenção e tes
 Melhora a modularidade e facilita a inversão de dependência dentro do projeto.  
 
 ---
+## 📌 Endpoints
+
+![SWAGGERNET](https://github.com/user-attachments/assets/0569147b-1359-4057-82aa-fa77d512e6bc)
+
+
+---
 ## Como Rodar o Projeto:
 
 Certifique-se de que o SQL Developer esteja instalado e configurado.
