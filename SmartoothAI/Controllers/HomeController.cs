@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartoothAI.Models;
+using SmartoothAI.WebAPI.Models;
 using System.Diagnostics;
 
 namespace SmartoothAI.Controllers
@@ -38,10 +39,23 @@ namespace SmartoothAI.Controllers
             var pacientes = new List<string> { "Paciente Tranquilo", "Sabrina Couto", "Kevin Nobre", "Juliana Moreira", };
             return View(pacientes); 
         }
-        public IActionResult Detalhes(string id)
+
+        public IActionResult Detalhes(int id)
         {
-            var pacienteDetalhes = $"Detalhes do Paciente: {id}";
-            return View("Detalhes", pacienteDetalhes);
+            var pacientesDetalhados = new Dictionary<int, PacienteDetalhesViewModel>
+        {
+            { 1, new PacienteDetalhesViewModel { Nome = "Paciente Tranquilo", Idade = 35, Plano = "Odonto Plus", Historico = "Consulta de rotina, sem problemas." } },
+            { 2, new PacienteDetalhesViewModel { Nome = "Sabrina Couto", Idade = 29, Plano = "Odonto Premium", Historico = "Tratamento ortodôntico em andamento." } },
+            { 3, new PacienteDetalhesViewModel { Nome = "Kevin Nobre", Idade = 32, Plano = "Odonto Essencial", Historico = "Extração do siso realizada há 6 meses." } },
+            { 4, new PacienteDetalhesViewModel { Nome = "Juliana Moreira", Idade = 27, Plano = "Odonto Top", Historico = "Limpeza dentária realizada no último mês." } }
+        };
+
+            if (pacientesDetalhados.TryGetValue(id, out var paciente))
+            {
+                return View("Detalhes", paciente);
+            }
+
+            return NotFound("Paciente não encontrado.");
         }
 
 

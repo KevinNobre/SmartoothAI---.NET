@@ -35,12 +35,9 @@ namespace SmartoothAI.Infrastructure.Data
             modelBuilder.Entity<RecomendacaoTrat>().ToTable("tb_recomendacao_trat");
             modelBuilder.Entity<SistemaPontos>().ToTable("tb_sistema_pontos");
             modelBuilder.Entity<UsuarioPaciente>().ToTable("tb_usuario_paciente");
-
-            // Caso alguma tabela tenha chaves compostas ou configurações específicas, como no caso de RecomendacaoTrat
             modelBuilder.Entity<RecomendacaoTrat>()
-                .HasNoKey();  // Se não houver chave primária definida, o modelo precisa ser tratado assim.
-
-            // Exemplo de configuração de chave primária composta (se for o caso)
+                .HasNoKey();  
+    
             // modelBuilder.Entity<AlgumaEntidade>()
             //     .HasKey(e => new { e.Chave1, e.Chave2 });
 

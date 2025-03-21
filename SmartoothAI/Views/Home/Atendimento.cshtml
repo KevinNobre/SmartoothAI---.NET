@@ -20,19 +20,21 @@
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var paciente in Model)
-            {
-                <tr>
-                    <td>@paciente</td>
-                    <td>
-                        <a asp-controller="Home" asp-action="Detalhes" class="btn btn-primary btn-sm">Visualizar Prontuário</a>
-                    </td>
-                       
-                </tr>
-            }
-        </tbody>
-    </table>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    var id = i + 1;
+                    <tr>
+                        <td>@Model[i]</td>
+                        <td>
+                            <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@id" class="btn btn-primary btn-sm">
+                                Visualizar Prontuário
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
     <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-3">Voltar</a>
 </div>
