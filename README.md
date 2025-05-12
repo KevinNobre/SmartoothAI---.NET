@@ -88,6 +88,41 @@ Melhora a modularidade e facilita a inversão de dependência dentro do projeto.
 ![SWAGGERNET](https://github.com/user-attachments/assets/0569147b-1359-4057-82aa-fa77d512e6bc)
 
 ---
+## 🔍 Aplicação dos Princípios SOLID
+
+### ✅ S — Single Responsibility Principle
+Cada classe possui **uma única responsabilidade**.  
+
+### ✅ O — Open/Closed Principle
+O sistema é **aberto para extensão, mas fechado para modificação**.  
+Exemplo: podemos adicionar novos tipos de análise (ex: análise de sarcasmo) sem modificar a lógica existente.
+
+### ✅ L — Liskov Substitution Principle
+Interfaces podem ser substituídas por suas implementações sem causar falhas.  
+Exemplo: Repositórios implementam interfaces da camada Domain, respeitando contratos previsíveis.
+
+### ✅ I — Interface Segregation Principle
+Interfaces são **específicas e enxutas**, evitando a obrigatoriedade de implementar métodos que não fazem sentido para a classe.  
+Exemplo: repositórios definem apenas métodos necessários à sua entidade.
+
+### ✅ D — Dependency Inversion Principle
+Camadas superiores dependem de **abstrações**, não de implementações concretas.  
+Exemplo: Controllers dependem de serviços via interfaces (`IDicaService`), injetadas pelo DI do .NET.
+
+---
+
+
+## ✨ Boas Práticas de Clean Code
+
+- **Nomes claros e expressivos utilizando CamelCase**: `SentimentoController`, `PreverSentimento`, `TreinarModelo`.
+- **Baixo acoplamento** entre camadas.
+- **Alta coesão**: cada classe e método realiza uma única tarefa bem definida.
+- **Separação de preocupações**: a lógica de ML não está no controller, mas encapsulada em serviços.
+- **Código autoexplicativo**, com mínima necessidade de comentários.
+- **Evita duplicação**, reutilizando serviços, modelos e pipelines de ML.
+
+---
+
 ## 🤖 Implementação de Machine Learning com ML.NET
 
 Este projeto utiliza o **ML.NET**, a biblioteca de aprendizado de máquina da Microsoft para .NET, para treinar e utilizar um modelo de **classificação de sentimentos** com base em dados textuais.
