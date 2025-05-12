@@ -87,6 +87,69 @@ Melhora a modularidade e facilita a inversão de dependência dentro do projeto.
 
 ![SWAGGERNET](https://github.com/user-attachments/assets/0569147b-1359-4057-82aa-fa77d512e6bc)
 
+---
+## 🤖 Implementação de Machine Learning com ML.NET
+
+Este projeto utiliza o **ML.NET**, a biblioteca de aprendizado de máquina da Microsoft para .NET, para treinar e utilizar um modelo de **classificação de sentimentos** com base em dados textuais.
+
+### 📁 Estrutura dos Arquivos
+
+- `Data/sentimento-train.csv` – Arquivo com os dados de treinamento.
+- `wwwroot/MLModels/SentimentoModel.zip` – Modelo treinado salvo em disco.
+- `SentimentoController.cs` – Controller responsável por treinar e fazer previsões.
+
+### 📈 Funcionamento
+
+#### 1. Treinamento do Modelo
+
+Se o arquivo `.zip` com o modelo treinado não for encontrado ao iniciar a API, o controlador automaticamente executa o método `TreinarModelo()` que:
+
+- Carrega os dados do arquivo CSV.
+- Converte os rótulos de sentimento para `KeyType`.
+- Transforma o texto em vetores numéricos com `FeaturizeText`.
+- Treina o modelo com o algoritmo `SdcaMaximumEntropy`.
+- Salva o modelo em disco (`SentimentoModel.zip`).
+
+#### 2. Formato do CSV
+
+O arquivo de treino deve conter duas colunas com cabeçalho:
+Texto,Sentimento
+"Esse produto é ótimo!",positivo
+"Não gostei do atendimento.",negativo
+
+### 🚀 Testando a API
+
+Você pode testar o endpoint `POST /api/sentimento/prever` via Swagger ou Postman.
+
+#### Exemplo de entrada (JSON)
+{
+  "texto": "Estou muito feliz com o serviço."
+}
+
+#### Exemplo de saída esperada
+{
+  "sentimento": "positivo"
+}
+
+![TestePositivo](https://github.com/user-attachments/assets/369c4c91-94e8-41f0-9819-7cabf1694afa)
+
+#### Exemplo de entrada (JSON)
+{
+  "texto": "O atendimento foi péssimo e não resolveram meu problema."
+}
+
+#### Exemplo de saída esperada
+{
+  "sentimento": "Negativo"
+}
+
+![TesteNegativo](https://github.com/user-attachments/assets/03d07264-67ed-42bb-a579-40041d7f5549)
+
+- O campo Sentimento é obrigatório apenas no CSV de treinamento.
+
+- A previsão em produção requer somente o campo Texto.
+
+- O modelo pode ser estendido para detectar mais classes de sentimento (como neutro, raiva, etc.) desde que o dataset de treinamento seja adequado.
 
 ---
 ## Como Rodar o Projeto:
