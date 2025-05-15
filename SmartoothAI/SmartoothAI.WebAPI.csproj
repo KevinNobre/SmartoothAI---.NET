@@ -5,11 +5,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\sentimento-test.csv" />
+    <Content Include="Data\sentimento-train.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\UsuarioPaciente\Delete.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.ML" Version="4.0.2" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="4.0.2" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.23.60" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
   </ItemGroup>
@@ -17,6 +24,10 @@
   <ItemGroup>
     <ProjectReference Include="..\SmartoothAI.Application\SmartoothAI.Application.csproj" />
     <ProjectReference Include="..\SmartoothAI.Infrastructure\SmartoothAI.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\MLModels\ModeloSentimento\" />
   </ItemGroup>
 
   <PropertyGroup>

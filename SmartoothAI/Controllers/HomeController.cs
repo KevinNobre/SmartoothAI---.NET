@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using SmartoothAI.Application.Services;
+using SmartoothAI.Domain.Entities;
 using SmartoothAI.Models;
 using SmartoothAI.WebAPI.Models;
 using System.Diagnostics;
@@ -8,10 +10,12 @@ namespace SmartoothAI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly EnderecoAppService _enderecoAppService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, EnderecoAppService enderecoAppService)
         {
             _logger = logger;
+            _enderecoAppService = enderecoAppService;
         }
 
         public IActionResult Index()
@@ -37,7 +41,7 @@ namespace SmartoothAI.Controllers
         public IActionResult Atendimento()
         {
             var pacientes = new List<string> { "Paciente Tranquilo", "Sabrina Couto", "Kevin Nobre", "Juliana Moreira", };
-            return View(pacientes); 
+            return View(pacientes);
         }
 
         public IActionResult Detalhes(int id)
@@ -87,6 +91,31 @@ namespace SmartoothAI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [HttpGet]
+        [Route("Home/BuscarEnderecoPorCep/{cep}")]
+        public async Task<IActionResult> BuscarEnderecoPorCep(string cep)
+        {
+            if (string.IsNullOrWhiteSpace(cep))
+                return BadRequest("CEP inválido.");
 
+            var paciente = new UsuarioPaciente { Cep = cep };
+            var pacienteComEndereco = await _enderecoAppService.PreencherEnderecoPorCepAsync(paciente);
+
+            if (string.IsNullOrEmpty(pacienteComEndereco.Logradouro))
+                return NotFound("Endereço não encontrado para o CEP informado.");
+
+            // Retorna JSON com os dados do endereço
+            return Json(new
+            {
+                pacienteComEndereco.Cep,
+                pacienteComEndereco.Logradouro,
+                pacienteComEndereco.Complemento,
+                pacienteComEndereco.Bairro,
+                pacienteComEndereco.Cidade,
+                pacienteComEndereco.Uf
+            });
+
+
+        }
     }
 }
