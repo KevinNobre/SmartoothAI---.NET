@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SmartoothAI.WebAPI;
 using Microsoft.Extensions.Logging;
+using SmartoothAI.Application.Services;
+using SmartoothAI.Domain.Repositories;
 
 namespace SmartoothAI.Tests.System.WebAPI
 {
@@ -19,13 +21,13 @@ namespace SmartoothAI.Tests.System.WebAPI
     {
         private HomeController CriarControllerComTempData()
         {
-            // Cria mock do logger
             var loggerMock = new Mock<ILogger<HomeController>>();
+            var enderecoServiceMock = new Mock<EnderecoAppService>(
+                Mock.Of<IViaCepService>() // EnderecoAppService depende de IViaCepService
+            );
 
-            // Cria a controller com logger mockado
-            var controller = new HomeController(loggerMock.Object);
+            var controller = new HomeController(loggerMock.Object, enderecoServiceMock.Object);
 
-            // Configura o TempData
             var tempData = new TempDataDictionary(
                 new DefaultHttpContext(),
                 Mock.Of<ITempDataProvider>()

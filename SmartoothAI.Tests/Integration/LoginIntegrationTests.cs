@@ -48,7 +48,6 @@ namespace SmartoothAI.Tests.Integration
             var tempPath = Path.Combine(Path.GetTempPath(), "response_login_invalido.html");
             File.WriteAllText(tempPath, body);
 
-            // Opcional: log no console para saber onde foi salvo
             Console.WriteLine("HTML salvo em: " + tempPath);
         }
     }
