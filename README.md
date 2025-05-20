@@ -87,6 +87,10 @@ Melhora a modularidade e facilita a inversão de dependência dentro do projeto.
 
 ![SWAGGERNET](https://github.com/user-attachments/assets/0569147b-1359-4057-82aa-fa77d512e6bc)
 
+## 📌 Endpoint API ViaCep
+
+![ViaCepTest](https://github.com/user-attachments/assets/e814f955-026c-48ba-898c-54321979ebb9)
+
 ---
 ## 🔍 Aplicação dos Princípios SOLID
 
@@ -185,8 +189,49 @@ Você pode testar o endpoint `POST /api/sentimento/prever` via Swagger ou Postma
 - A previsão em produção requer somente o campo Texto.
 
 - O modelo pode ser estendido para detectar mais classes de sentimento (como neutro, raiva, etc.) desde que o dataset de treinamento seja adequado.
+---
+
+## 🧪 Testes Automatizados
+
+Este projeto conta com uma suíte de testes automatizados robusta que cobre diferentes camadas da aplicação SmartoothAI.
+
+### ✅ Visão Geral
+
+![TestesAprovados](https://github.com/user-attachments/assets/518748de-6d2e-4601-9f35-6456b0e4208f)
+
+- **Total de testes:** `6`
+- **Todos aprovados:** ✅
+- **Tempo total de execução:** `~2,8 segundos`
+- **Framework:** `xUnit`
+- **Bibliotecas adicionais:** `FluentAssertions`, `Moq`
 
 ---
+### 🔍 Estrutura dos Testes
+
+A organização dos testes é dividida em três categorias principais:
+
+| Projeto                                   | Descrição                                                   | Exemplo de Testes                                                    |
+|------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------------|
+| `SmartoothAI.Tests`                      | Testes unitários básicos                                    | `Test1`                                                              |
+| `SmartoothAI.Tests.Integration`          | Testes de integração entre partes da aplicação              | `LoginintegrationTests`, `Login_ComCredenciaisInvalidas_DeveFalhar` |
+| `SmartoothAI.Tests.System.WebAPI`        | Testes de sistema da camada de controladores da Web API     | `Login_DeveAdicionarErroModelState`, `Login_DeveRetornarView...`    |
+
+---
+
+### 🧪 Exemplos de Casos de Teste
+
+#### Testes de Integração
+
+- `Login_ComCredenciaisInvalidas_DeveFalhar`: Garante que credenciais incorretas resultam em erro.
+- `Home_Index_DeveRetornarComponenteCorreto`: Verifica se a página inicial retorna a view correta.
+
+#### Testes de Sistema (Web API)
+
+- `Login_DeveAdicionarErroModelState`: Simula erro de model state no login e verifica o comportamento.
+- `Login_DeveRedirecionarParaAtendimento`: Confirma o redirecionamento após login bem-sucedido.
+- `Login_DeveRetornarView_QuandoModelStateInvalido`: Valida a renderização da view com modelo inválido.
+---
+
 ## Como Rodar o Projeto:
 
 Certifique-se de que o SQL Developer esteja instalado e configurado.
@@ -213,8 +258,6 @@ Antes de iniciar, certifique-se de ter os seguintes requisitos instalados:
 - Requisição de Login com utilização da API + Banco de Dados Oracle
 
   ![Login](https://github.com/user-attachments/assets/6a5f669b-d6ab-4cd7-b532-b0c1db41b646)
-
-
 
 
 ### Passo a passo para execução
